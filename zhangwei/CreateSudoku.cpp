@@ -20,7 +20,7 @@ void Initialize()//预先初始化所有全排列
 		count++;
 	} while (next_permutation(init + 1, init + 9));
 }
-void Swap(int a, int b, int c, int map[][9], int map_swap[][9])//各三行之间交换生成数独
+void Swap(int a, int b, int c, int map[][9], int map_swap[][9])//各三行之间交换生成数独1
 {
 	for (int i = 0; i < 3; i++)
 	{
