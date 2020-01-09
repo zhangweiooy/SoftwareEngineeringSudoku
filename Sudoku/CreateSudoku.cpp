@@ -24,24 +24,29 @@ void Swap(int a, int b, int c, int map[][9], int map_swap[][9])//¸÷ÈýÐÐÖ®¼ä½»»»É
 {
 	for (int i = 0; i < 3; i++)
 	{
-		*map_swap[i] = *map[swap0to2[a][i]];
+		copy(map[swap0to2[a][i]],map[swap0to2[a][i]]+9,map_swap[i]);
 	}
 	for (int i = 3; i < 6; i++)
 	{
-		*map_swap[i] = *map[swap3to5[b][i - 3]];
+		copy(map[swap3to5[b][i-3]], map[swap3to5[b][i-3]] + 9, map_swap[i]);
 	}
 	for (int i = 6; i < 9; i++)
 	{
-		*map_swap[i] = *map[swap6to8[c][i - 6]];
+		copy(map[swap6to8[c][i-6]], map[swap6to8[c][i-6]] + 9, map_swap[i]);
 	}
 	return;
 }
 void Print(FILE* fp, int map[][9], int flag)
 {
 	if (flag != 0)//Á½¸ö½á¹ûÖ®¼äÊä³öÒ»¸ö»»ÐÐ
+	{
 		fputc('\n', fp);
+		fputc('\n', fp);
+	}
 	for (int i = 0; i < 9; i++)
 	{
+		if(i)
+            fputc('\n', fp);
 		for (int j = 0; j < 9; j++)
 		{
 			if (j == 0)
@@ -49,7 +54,7 @@ void Print(FILE* fp, int map[][9], int flag)
 			else
 				fprintf(fp, "%c%d", ' ', map[i][j]);
 		}
-		fputc('\n', fp);
+		
 	}
 	return;
 }

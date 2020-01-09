@@ -34,6 +34,6 @@ int main(int argc, char *argv[])
 	else if (strcmp(argv[1],"-s")==0)
 	{
 		/////////
-	}*/CreateSudoku(100);
+	}*/CreateSudoku(1000);
 	return 0;
 }
