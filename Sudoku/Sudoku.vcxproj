@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{13CA8092-9ADA-4810-B158-174DE8EE33F2}</ProjectGuid>
-    <RootNamespace>zhangwei</RootNamespace>
+    <RootNamespace>Sudoku</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Sudoku</ProjectName>
   </PropertyGroup>
