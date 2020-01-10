@@ -40,9 +40,7 @@ int main(int argc, char *argv[])
 			cout << "输入文件路径错误！" << endl;
 			return 0;
 		}
-		Grid grid;
-		grid = ReadFile(fp);
-		SolveSudoku(grid);
+		ReadFile(fp);
 	}//CreateSudoku(1000);
 	return 0;
 }

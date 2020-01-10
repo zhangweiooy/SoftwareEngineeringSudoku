@@ -18,7 +18,6 @@ void PrintFile(FILE* fp, Grid grid, int flag)
 			else
 				fprintf(fp, "%c%d", ' ', grid.map[i][j]);
 		}
-
 	}
 	return;
 }

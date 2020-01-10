@@ -10,4 +10,4 @@ typedef struct node
 void CreateSudoku(int n);
 void SolveSudoku(Grid grid);
 void PrintFile(FILE* fp, Grid grid, int flag);
-Grid ReadFile(FILE* fp);
+void ReadFile(FILE* fp);
