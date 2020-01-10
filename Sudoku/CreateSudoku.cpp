@@ -1,7 +1,6 @@
 #include"main.h"
 using namespace std;
 int src[40320][9];//´æ·ÅµÚÒ»ĞĞµÄËùÓĞÅÅÁĞÇé¿ö
-int map[9][9];//Êı¶ÀÅÌÃæ
 int shift[9] = { 0,3,6,1,4,7,2,5,8 };//µÚÒ»ĞĞÓÒÒÆÉú³ÉÆäÓàĞĞµÄÎ»Êı
 int swap0to2[2][3] = { {0,1,2},{0,2,1} };//0~2ĞĞµÄÅÅÁĞË÷Òı
 int swap3to5[6][3] = { {3,4,5},{3,5,4},{4,3,5},{4,5,3},{5,4,3},{5,3,4} };//3~5ĞĞµÄÅÅÁĞË÷Òı
@@ -36,59 +35,39 @@ void Swap(int a, int b, int c, int map[][9], int map_swap[][9])//¸÷ÈıĞĞÖ®¼ä½»»»É
 	}
 	return;
 }
-void Print(FILE* fp, int map[][9], int flag)
-{
-	if (flag != 0)//Á½¸ö½á¹ûÖ®¼äÊä³öÒ»¸ö»»ĞĞ
-	{
-		fputc('\n', fp);
-		fputc('\n', fp);
-	}
-	for (int i = 0; i < 9; i++)
-	{
-		if(i)
-            fputc('\n', fp);
-		for (int j = 0; j < 9; j++)
-		{
-			if (j == 0)
-				fprintf(fp, "%d", map[i][j]);
-			else
-				fprintf(fp, "%c%d", ' ', map[i][j]);
-		}
-		
-	}
-	return;
-}
+
 void CreateSudoku(int n)
 {
 	Initialize();
 	FILE* fp;
 	fp = fopen("sudoku.txt", "w");
 	int count = 0;
+	Grid grid;
 	for (int i = 0; i < 40320; i++)
 	{
 		for (int j = 0; j < 9; j++)//´æ·ÅÊı¶ÀÅÌÃæµÄµÚÒ»ĞĞ
 		{
-			map[0][j] = src[i][j];
+			grid.map[0][j] = src[i][j];
 		}
 		for (int j = 1; j < 9; j++)//ÒÆ¶¯Éú³ÉÆäÓà8ĞĞ
 		{
 			for (int k = 0; k < 9; k++)
 			{
-				map[j][k] = map[0][(k + shift[j]) % 9];
+				grid.map[j][k] = grid.map[0][(k + shift[j]) % 9];
 			}
 		}
-		int map_swap[9][9];
+		Grid grid_swap;
 		for (int j = 0; j < 2; j++)//Ç°ÈıĞĞµÄÁ½ÖÖ±ä»»
 		{
 			for (int jj = 0; jj < 6; jj++)//ÖĞ¼äÈıĞĞµÄÁùÖÖ±ä»»
 			{
 				for (int jjj = 0; jjj < 6; jjj++)//ºóÈıĞĞµÄÁùÖÖ±ä»»
 				{
-					memset(map_swap, 0, sizeof(map_swap));
+					memset(grid_swap.map, 0, sizeof(grid_swap.map));
 					if (count < n)
 					{
-						Swap(j, jj, jjj, map, map_swap);//µÃµ½9ĞĞµÄÒ»ÖÖ±ä»»ºóµÄ½á¹û
-						Print(fp, map_swap, count);
+						Swap(j, jj, jjj, grid.map, grid_swap.map);//µÃµ½9ĞĞµÄÒ»ÖÖ±ä»»ºóµÄ½á¹û
+						PrintFile(fp, grid_swap, count);
 						count++;
 					}
 					else if (count == n)

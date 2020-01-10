@@ -2,7 +2,7 @@
 using namespace std;
 int main(int argc, char *argv[])
 {
-/*	if (strcmp(argv[1],"-c")==0)
+	if (strcmp(argv[1],"-c")==0)
 	{
 		int len = strlen(argv[2]);
 		for(int i=0;i<len;i++)//判断输入是否为数字
@@ -33,7 +33,16 @@ int main(int argc, char *argv[])
 	}
 	else if (strcmp(argv[1],"-s")==0)
 	{
-		/////////
-	}*/CreateSudoku(1000);
+		FILE* fp;
+		fp = fopen(argv[2], "r");
+		if (fp==NULL)
+		{
+			cout << "输入文件路径错误！" << endl;
+			return 0;
+		}
+		Grid grid;
+		grid = ReadFile(fp);
+		SolveSudoku(grid);
+	}//CreateSudoku(1000);
 	return 0;
 }
