@@ -9,14 +9,12 @@ Grid result;
 int flag = 0;
 void DFS(Grid& grid,int count)
 {
-	//int loc = FindLocation(grid);
 	if (count ==81)
 	{
 		result = grid;
 		return;
 	}
-	int i = count / 9;
-	int j = count % 9;
+	int i = count / 9, j = count % 9;
 	if (grid.map[i][j] == 0)
 		for (int num = 1; num < 10; num++)//分别尝试1~9
 		{
@@ -42,7 +40,7 @@ void DFS(Grid& grid,int count)
 		DFS(grid, count + 1);
 	return;
 }
-void SolveSudoku(Grid grid)//求解数独
+void SolveSudoku(Grid grid,FILE *fp)//求解数独
 {
 	memset(markrow, 0, sizeof(markrow));
 	memset(markcol, 0, sizeof(markcol));
@@ -62,10 +60,7 @@ void SolveSudoku(Grid grid)//求解数独
 		}
 	}
 	DFS(grid,0);
-	FILE* fp;
-	fp = fopen("sudokusolution.txt", "a");
 	PrintFile(fp, result, flag);
 	flag = 1;
-	fclose(fp);
 	return;
 }
