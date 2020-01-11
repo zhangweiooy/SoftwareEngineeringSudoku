@@ -44,5 +44,6 @@ int main(int argc, char *argv[])
 		ReadFile(fp);
 		fclose(fp);
 //	}//CreateSudoku(1000);
+		getchar();
 	return 0;
 }
