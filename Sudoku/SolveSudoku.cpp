@@ -5,14 +5,12 @@ using namespace std;
 int markrow[9];
 int markcol[9];
 int markpalace[9];
-Grid result;
 int flag = 0;
-void DFS(Grid& grid,int count)
+bool DFS(Grid& grid,int count)
 {
 	if (count ==81)
 	{
-		result = grid;
-		return;
+		return true;
 	}
 	int i = count / 9, j = count % 9;
 	if (grid.map[i][j] == 0)
@@ -30,15 +28,16 @@ void DFS(Grid& grid,int count)
 				markcol[j] |= (1 << num);
 				markpalace[GetPalace(i, j)] |= (1 << num);
 			}
-			DFS(grid, count + 1);
+			if(DFS(grid, count + 1))
+				return true;
 			markrow[i] ^= (1 << num);
 			markcol[j] ^= (1 << num);
 			markpalace[GetPalace(i, j)] ^= (1 << num);
 			grid.map[i][j] = 0;
 		}
 	else
-		DFS(grid, count + 1);
-	return;
+		return DFS(grid, count + 1);
+	return false;
 }
 void SolveSudoku(Grid grid,FILE *fp)//求解数独
 {
@@ -60,7 +59,7 @@ void SolveSudoku(Grid grid,FILE *fp)//求解数独
 		}
 	}
 	DFS(grid,0);
-	PrintFile(fp, result, flag);
+	PrintFile(fp, grid, flag);
 	flag = 1;
 	return;
 }
