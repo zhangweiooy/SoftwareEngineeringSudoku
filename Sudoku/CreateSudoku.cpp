@@ -23,15 +23,15 @@ void Swap(int a, int b, int c, int map[][9], int map_swap[][9])//¸÷ÈýÐÐÖ®¼ä½»»»É
 {
 	for (int i = 0; i < 3; i++)
 	{
-		copy(map[swap0to2[a][i]],map[swap0to2[a][i]]+9,map_swap[i]);
+		copy(map[swap0to2[a][i]], map[swap0to2[a][i]] + 9, map_swap[i]);
 	}
 	for (int i = 3; i < 6; i++)
 	{
-		copy(map[swap3to5[b][i-3]], map[swap3to5[b][i-3]] + 9, map_swap[i]);
+		copy(map[swap3to5[b][i - 3]], map[swap3to5[b][i - 3]] + 9, map_swap[i]);
 	}
 	for (int i = 6; i < 9; i++)
 	{
-		copy(map[swap6to8[c][i-6]], map[swap6to8[c][i-6]] + 9, map_swap[i]);
+		copy(map[swap6to8[c][i - 6]], map[swap6to8[c][i - 6]] + 9, map_swap[i]);
 	}
 	return;
 }

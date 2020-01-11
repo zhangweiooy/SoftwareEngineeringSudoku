@@ -6,7 +6,8 @@ int markrow[9];
 int markcol[9];
 int markpalace[9];
 Grid result;
-int FindLocation(Grid &grid)
+int flag = 0;
+int FindLocation(Grid& grid)
 {
 	for (int i = 0; i < 9; i++)
 	{
@@ -18,10 +19,10 @@ int FindLocation(Grid &grid)
 	}
 	return -1;
 }
-void DFS(Grid &grid)
+void DFS(Grid& grid)
 {
 	int loc = FindLocation(grid);
-	if (loc<0)
+	if (loc < 0)
 	{
 		result = grid;
 		return;
@@ -34,32 +35,32 @@ void DFS(Grid &grid)
 			//{
 	int i = loc / 9;
 	int j = loc % 9;
-				for (int num = 1; num < 10; num++)//分别尝试1~9
-				{
-					int valid = (markrow[i]&(1<<num)) || (markcol[j]&(1<<num)) || (markpalace[GetPalace(i, j)]&(1<<num));
-					if (valid)//若当前行/列/宫中已有num，则尝试下一个数字
-					{
-						continue;
-					}
-					else//填入数字，并标记当前行/列/宫中已有该数字
-					{
-						grid.map[i][j] = num;
-						markrow[i] |= (1 << num);
-						markcol[j] |= (1 << num);
-						markpalace[GetPalace(i,j)] |= (1 << num);
-					}
-					DFS(grid);
-					if ( 1)
-					{
-						markrow[i] ^= (1 << num);
-						markcol[j] ^= (1 << num);
-						markpalace[GetPalace(i, j)] ^= (1 << num);
-						grid.map[i][j] = 0;
-					}
-				}
-			//}
-	//	}
+	for (int num = 1; num < 10; num++)//分别尝试1~9
+	{
+		int valid = (markrow[i] & (1 << num)) || (markcol[j] & (1 << num)) || (markpalace[GetPalace(i, j)] & (1 << num));
+		if (valid)//若当前行/列/宫中已有num，则尝试下一个数字
+		{
+			continue;
+		}
+		else//填入数字，并标记当前行/列/宫中已有该数字
+		{
+			grid.map[i][j] = num;
+			markrow[i] |= (1 << num);
+			markcol[j] |= (1 << num);
+			markpalace[GetPalace(i, j)] |= (1 << num);
+		}
+		DFS(grid);
+		if (1)
+		{
+			markrow[i] ^= (1 << num);
+			markcol[j] ^= (1 << num);
+			markpalace[GetPalace(i, j)] ^= (1 << num);
+			grid.map[i][j] = 0;
+		}
+	}
 	//}
+//	}
+//}
 	return;
 }
 void SolveSudoku(Grid grid)//求解数独
@@ -87,7 +88,8 @@ void SolveSudoku(Grid grid)//求解数独
 	DFS(grid);
 	FILE* fp;
 	fp = fopen("sudokusolution.txt", "a");
-	PrintFile(fp, result, 1);
+	PrintFile(fp, result, flag);
+	flag = 1;
 	fclose(fp);
 	return;
 }
