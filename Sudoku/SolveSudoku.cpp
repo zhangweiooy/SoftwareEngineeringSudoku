@@ -86,7 +86,7 @@ void SolveSudoku(Grid grid)//Çó½âÊý¶À
 	}
 	DFS(grid);
 	FILE* fp;
-	fp = fopen("sudokusolution.txt", "w");
+	fp = fopen("sudokusolution.txt", "a");
 	PrintFile(fp, result, 1);
 	fclose(fp);
 	return;
