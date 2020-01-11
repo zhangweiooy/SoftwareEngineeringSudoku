@@ -1,7 +1,7 @@
 #include"main.h"
 using namespace std;
 int main(int argc, char *argv[])
-{
+{/*
 	if (strcmp(argv[1],"-c")==0)
 	{
 		int len = strlen(argv[2]);
@@ -32,15 +32,17 @@ int main(int argc, char *argv[])
 		}
 	}
 	else if (strcmp(argv[1],"-s")==0)
-	{
+	{*/
 		FILE* fp;
-		fp = fopen(argv[2], "r");
+	//	fp = fopen(argv[2], "r");
+		fp = fopen("sudokupuzzle.txt", "r");
 		if (fp==NULL)
 		{
 			cout << "输入文件路径错误！" << endl;
 			return 0;
 		}
 		ReadFile(fp);
-	}//CreateSudoku(1000);
+		fclose(fp);
+//	}//CreateSudoku(1000);
 	return 0;
 }

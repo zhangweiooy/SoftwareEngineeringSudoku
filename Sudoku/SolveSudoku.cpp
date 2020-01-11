@@ -5,8 +5,13 @@ using namespace std;
 int markrow[9];
 int markcol[9];
 int markpalace[9];
+int blank ;//记录空格数
 void DFS(Grid &grid)
 {
+	if (blank<=0)
+	{
+		return;
+	}
 	for (int i = 0; i < 9; i++)
 	{
 		for (int j = 0; j < 9; j++)
@@ -26,12 +31,16 @@ void DFS(Grid &grid)
 						markrow[i] |= (1 << num);
 						markcol[j] |= (1 << num);
 						markpalace[GetPalace(i,j)] |= (1 << num);
+						blank--;
 					}
 					DFS(grid);
-					markrow[i] ^= (1 << num);
-					markcol[j] ^= (1 << num);
-					markpalace[GetPalace(i, j)] ^= (1 << num);
-					grid.map[i][j] = 0;
+					if (blank > 0)
+					{
+						markrow[i] ^= (1 << num);
+						markcol[j] ^= (1 << num);
+						markpalace[GetPalace(i, j)] ^= (1 << num);
+						grid.map[i][j] = 0;
+					}
 				}
 			}
 		}
@@ -44,7 +53,8 @@ void SolveSudoku(Grid grid)//求解数独
 	memset(markcol, 0, sizeof(markcol));
 	memset(markpalace, 0, sizeof(markpalace));
 	int num = 0;
-	for (int i = 0; i < 9; i++)
+	blank = 0;
+	for (int i = 0; i < 9; i++)//记录下各行各列各宫中数字的出现情况
 	{
 		for (int j = 0; j < 9; j++)
 		{
@@ -55,8 +65,14 @@ void SolveSudoku(Grid grid)//求解数独
 				markcol[j] |= 1 << num;
 				markpalace[GetPalace(i, j)] |= 1 << num;
 			}
+			else
+				blank++;
 		}
 	}
 	DFS(grid);
+	FILE* fp;
+	fp = fopen("sudokusolution.txt", "w");
+	PrintFile(fp, grid, 1);
+	fclose(fp);
 	return;
 }
