@@ -1,6 +1,6 @@
 #include"main.h"
 using namespace std;
-void ReadFile(FILE* fp)//从文件中读取一个数独
+void ReadFile(FILE* fp)//从指定文件中读取一个数独
 {
 	Grid grid;
 	int temp = 0, count = 0;

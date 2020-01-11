@@ -36,7 +36,7 @@ void Swap(int a, int b, int c, int map[][9], int map_swap[][9])//¸÷ÈıĞĞÖ®¼ä½»»»É
 	return;
 }
 
-void CreateSudoku(int n)
+void CreateSudoku(int n)//Éú³ÉÖ¸¶¨ÊıÁ¿µÄÊı¶ÀÖÕ¾Ö
 {
 	Initialize();
 	FILE* fp;

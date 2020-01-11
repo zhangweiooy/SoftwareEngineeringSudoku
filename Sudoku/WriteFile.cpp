@@ -1,6 +1,6 @@
 #include"main.h"
 using namespace std;
-void PrintFile(FILE* fp, Grid grid, int flag)
+void PrintFile(FILE* fp, Grid grid, int flag)//将一个数独终局写入指定文件中
 {
 	if (flag != 0)//两个结果之间输出一个换行
 	{
