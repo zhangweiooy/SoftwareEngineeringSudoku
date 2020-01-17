@@ -24,13 +24,13 @@ int main(int argc, char* argv[])
 			}
 			if (len > 7)
 			{
-				cout << "输入数字过大！" << endl;
+				cout << "输入数字不在范围内！" << endl;
 				return  0;
 			}
 			int n = atoi(argv[2]);
 			if (n > 1000000 || n < 1)//判断数字是否在要求范围内
 			{
-				cout << "输入数字不合法！" << endl;
+				cout << "输入数字不在范围内！" << endl;
 				return  0;
 			}
 			else

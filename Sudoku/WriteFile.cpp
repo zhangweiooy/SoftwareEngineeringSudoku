@@ -13,10 +13,14 @@ void PrintFile(FILE* fp, Grid grid, int flag)//将一个数独终局写入指定文件中
 			fputc('\n', fp);
 		for (int j = 0; j < 9; j++)
 		{
+			char temp = (grid.map[i][j] + '0');//将整型转为字符型以便用fwrite输出
 			if (j == 0)
-				fprintf(fp, "%d", grid.map[i][j]);
+				fwrite(&temp, 1, 1, fp);
 			else
-				fprintf(fp, "%c%d", ' ', grid.map[i][j]);
+			{
+				fputc(' ', fp);
+				fwrite(&temp, 1, 1, fp);
+			}
 		}
 	}
 	return;
