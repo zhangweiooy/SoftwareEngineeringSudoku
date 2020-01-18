@@ -6,7 +6,8 @@ void ReadFile(FILE* fp)//从指定文件中读取一个数独
 	int temp = 0, count = 0;
 	FILE* fp_s;
 	fp_s = fopen("sudokusolution.txt", "w");//存放数独求解的结果
-	while (!feof(fp)) {
+	while (!feof(fp)) 
+	{
 		if (fscanf(fp, "%d", &temp) == EOF)
 			break;
 		grid.map[count / 9][count % 9] = temp;

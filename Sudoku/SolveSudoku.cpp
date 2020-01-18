@@ -1,6 +1,6 @@
 #include"main.h"
 using namespace std;
-#define GetPalace(x,y) (x / 3) * 3 + y / 3//获取当前所在的九宫格的序号
+#define GetPalace(x, y) (x / 3) * 3 + y / 3//获取当前所在的九宫格的序号
 //位运算标记
 int markrow[9];//标记每一行各个数字是否被使用过
 int markcol[9];//标记每一列各个数字是否被使用过
