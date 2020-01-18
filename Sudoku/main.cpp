@@ -19,7 +19,7 @@ bool InputJudge(char p1[], char p2[])
 	{
 		if (strcmp(p1, "-c") == 0)
 		{
-			int len = strlen(p2);
+			int len = (int)strlen(p2);
 			for (int i = 0; i < len; i++)//判断输入是否为数字
 			{
 				if (isdigit(p2[i]))
@@ -39,7 +39,6 @@ bool InputJudge(char p1[], char p2[])
 		{
 			FILE* fp;
 			fp = fopen(p2, "r");
-			//	fp = fopen("sudokupuzzle.txt", "r");
 			if (fp == NULL)
 				return false;
 			ReadFile(fp);
