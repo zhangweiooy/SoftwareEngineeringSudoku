@@ -1,20 +1,6 @@
 #include"main.h"
 using namespace std;
-int main(int argc, char* argv[])
-{
-	if (argc != 3)//对命令行参数的合法性进行判断
-	{
-		cout << "输入不合法！" << endl;
-		return 0;
-	}
-	else
-	{
-		if (!InputJudge(argv[1], argv[2]))
-			cout << "输入不合法！ 请检查：输入参数错误/-c时输入非数字/输入数据不在范围内/-s时输入文件路径错误" << endl;
-	}
-	return 0;
-}
-bool InputJudge(char p1[], char p2[])
+bool InputJudge(char p1[], char p2[])//对输入的命令行参数的判断
 {
 	{
 		if (strcmp(p1, "-c") == 0)
@@ -48,4 +34,17 @@ bool InputJudge(char p1[], char p2[])
 			return false;
 	}
 	return true;
+}int main(int argc, char* argv[])
+{
+	if (argc != 3)//对命令行参数的个数进行判断
+	{
+		cout << "输入不合法！" << endl;
+		return 0;
+	}
+	else
+	{
+		if (!InputJudge(argv[1], argv[2]))
+			cout << "输入不合法！  请检查：输入参数错误/  生成终局时输入非数字/  输入数据不在范围内/  求解数独时输入文件路径错误" << endl;
+	}
+	return 0;
 }

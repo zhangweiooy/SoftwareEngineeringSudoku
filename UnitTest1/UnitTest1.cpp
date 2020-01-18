@@ -107,7 +107,7 @@ namespace UnitTest1
 			FILE* fp;
 			fp = fopen("sudoku.txt", "r");
 			int temp = 0;
-			fscanf(fp, "%d", &temp);
+			int i = fscanf(fp, "%d", &temp);
 			fclose(fp);
 			Assert::AreEqual(temp == 9, true);
 		}
@@ -126,12 +126,12 @@ namespace UnitTest1
 					{2,1,9,7,4,3,8,5,6}
 				}
 			};
-			FILE* fp = fopen("D:/test.txt", "w");
+			FILE* fp = fopen("test.txt", "w");
 			SolveSudoku(grid, fp);
 			fclose(fp);
 			int temp = 0;
-			fp = fopen("D:/test.txt", "r");
-			fscanf(fp, "%d", &temp);
+			fp = fopen("test.txt", "r");
+			int i = fscanf(fp, "%d", &temp);
 			fclose(fp);
 			Assert::AreEqual(temp == 7, true);
 		}
@@ -162,8 +162,8 @@ namespace UnitTest1
 				grid.map[count / 9][count % 9] = temp;
 			}
 			fclose(fp);
-			Assert::AreEqual(grid.map[0][0] != 0, true);
-			Assert::AreEqual(grid.map[8][8] != 0, true);
+			Assert::AreEqual(grid.map[0][0] == 5, true);
+			Assert::AreEqual(grid.map[8][8] == 9, true);
 		}
 		TEST_METHOD(TestMethod13)//对获取当前所在宫的测试
 		{
